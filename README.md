@@ -54,7 +54,7 @@ mkdir data
 python indexer.py
 
 # 4. Запустить API
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 Swagger-документация: http://localhost:8000/docs
