@@ -72,18 +72,32 @@ GET /api/files
 ```json
 [
   {
-    "filename": "auth_service.py",
-    "indexed_at": "2026-05-15 10:00:00",
-    "function_count": 5,
-    "class_count": 1,
-    "total_entities": 6
+    "filename": "test1.py",
+    "indexed_at": "2026-05-17 09:05:33",
+    "function_count": 11,
+    "class_count": 0,
+    "total_entities": 11
   },
   {
-    "filename": "user_repository.py",
-    "indexed_at": "2026-05-15 10:00:01",
-    "function_count": 4,
-    "class_count": 1,
-    "total_entities": 5
+    "filename": "test2.py",
+    "indexed_at": "2026-05-17 09:05:33",
+    "function_count": 12,
+    "class_count": 4,
+    "total_entities": 16
+  },
+  {
+    "filename": "test3.py",
+    "indexed_at": "2026-05-17 09:05:33",
+    "function_count": 7,
+    "class_count": 2,
+    "total_entities": 9
+  },
+  {
+    "filename": "test4.py",
+    "indexed_at": "2026-05-17 09:05:33",
+    "function_count": 1,
+    "class_count": 0,
+    "total_entities": 1
   }
 ]
 ```
@@ -93,26 +107,75 @@ GET /api/files
 ### 2. Структура конкретного файла
 
 ```
-GET /api/files/auth_service.py/structure
+GET /api/files/test3.py/structure
 ```
 
 ```json
 {
-  "filename": "auth_service.py",
+  "filename": "test3.py",
   "entities": [
     {
-      "name": "AuthService",
+      "name": "Task",
       "entity_type": "class",
-      "start_line": 10,
-      "end_line": 80,
-      "docstring": "Сервис аутентификации пользователей."
+      "start_line": 1,
+      "end_line": 5,
+      "docstring": null
     },
     {
-      "name": "login",
+      "name": "__init__",
       "entity_type": "function",
-      "start_line": 20,
-      "end_line": 45,
-      "docstring": "Аутентификация по логину и паролю."
+      "start_line": 2,
+      "end_line": 5,
+      "docstring": null
+    },
+    {
+      "name": "Queue",
+      "entity_type": "class",
+      "start_line": 7,
+      "end_line": 31,
+      "docstring": null
+    },
+    {
+      "name": "__init__",
+      "entity_type": "function",
+      "start_line": 8,
+      "end_line": 9,
+      "docstring": null
+    },
+    {
+      "name": "enqueue",
+      "entity_type": "function",
+      "start_line": 11,
+      "end_line": 12,
+      "docstring": null
+    },
+    {
+      "name": "dequeue",
+      "entity_type": "function",
+      "start_line": 14,
+      "end_line": 17,
+      "docstring": null
+    },
+    {
+      "name": "front",
+      "entity_type": "function",
+      "start_line": 19,
+      "end_line": 22,
+      "docstring": null
+    },
+    {
+      "name": "isEmpty",
+      "entity_type": "function",
+      "start_line": 24,
+      "end_line": 25,
+      "docstring": null
+    },
+    {
+      "name": "printqueue",
+      "entity_type": "function",
+      "start_line": 27,
+      "end_line": 31,
+      "docstring": null
     }
   ]
 }
@@ -125,18 +188,26 @@ GET /api/files/auth_service.py/structure
 ### 3. Поиск по ключевому слову
 
 ```
-GET /api/search?q=авторизация
+GET /api/search?q=where
 ```
 
 ```json
 [
-  {
-    "filename": "auth_service.py",
-    "name": "check_token",
+    {
+    "filename": "test2.py",
+    "name": "where_through_N",
     "entity_type": "function",
-    "start_line": 50,
-    "end_line": 65,
-    "docstring": "Проверка токена авторизации."
+    "start_line": 142,
+    "end_line": 157,
+    "docstring": null
+  },
+  {
+    "filename": "test2.py",
+    "name": "where_through_time",
+    "entity_type": "function",
+    "start_line": 159,
+    "end_line": 176,
+    "docstring": null
   }
 ]
 ```
@@ -148,18 +219,18 @@ GET /api/search?q=авторизация
 ### 4. Поиск с фильтрацией по типу (бонус)
 
 ```
-GET /api/search?q=user&type=class
+GET /api/search?q=task&type=class
 ```
 
 ```json
 [
   {
-    "filename": "user_repository.py",
-    "name": "UserRepository",
+    "filename": "test3.py",
+    "name": "Task",
     "entity_type": "class",
-    "start_line": 5,
-    "end_line": 60,
-    "docstring": "Репозиторий для работы с пользователями."
+    "start_line": 1,
+    "end_line": 5,
+    "docstring": null
   }
 ]
 ```
@@ -174,9 +245,9 @@ GET /api/stats
 
 ```json
 {
-  "total_files": 30,
-  "total_functions": 142,
-  "total_classes": 38,
-  "total_entities": 180
+  "total_files": 4,
+  "total_functions": 81,
+  "total_classes": 14,
+  "total_entities": 95
 }
 ```
